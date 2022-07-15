@@ -1,17 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { withSessionRoute } from '../../lib/session';
 
-interface ILoginFormData {
+interface ILoginFormValues {
   email: string;
   password: string;
   remember: boolean;
 }
 
 const login = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { email, password } = req.body as ILoginFormData;
+  const { email, password } = req.body as ILoginFormValues;
   /**
    * TODO:
-   * Get user from database.
+   * Complete refactor.
+   * Get user from database etc.
    */
   if (email === 'j@j.com' && password === 'j') {
     req.session.user = {
@@ -33,6 +34,6 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
   });
 };
 
-export type { ILoginFormData };
+export type { ILoginFormValues };
 
 export default withSessionRoute(login);

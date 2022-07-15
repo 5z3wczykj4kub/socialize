@@ -45,7 +45,7 @@ const Mobile = () => {
         key: 'logoutMessage',
         duration: 0,
       });
-      await axios.get('/api/logout');
+      await axios('/api/logout');
       await router.push('/login');
       hide();
     } catch (error) {

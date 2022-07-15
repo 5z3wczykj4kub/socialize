@@ -1,6 +1,6 @@
 import { Card, Col, Layout, Row } from 'antd';
 import type { NextPage } from 'next';
-import LoginForm from '../../components/forms/LoginForm';
+import RegisterForm from '../../components/forms/RegisterForm';
 import Navbar from '../../components/layout/Navbar';
 import { withSessionSsr } from '../../lib/session';
 import styles from './index.module.less';
@@ -21,7 +21,7 @@ const getServerSideProps = withSessionSsr(async ({ req }) => {
   };
 });
 
-const Login: NextPage = () => {
+const Register: NextPage = () => {
   const { Content } = Layout;
 
   return (
@@ -30,8 +30,8 @@ const Login: NextPage = () => {
       <Content className={styles.content}>
         <Row justify='center'>
           <Col span={24}>
-            <Card className={styles.card} title='Log in'>
-              <LoginForm />
+            <Card className={styles.card} title='Register'>
+              <RegisterForm />
             </Card>
           </Col>
         </Row>
@@ -42,4 +42,4 @@ const Login: NextPage = () => {
 
 export { getServerSideProps };
 
-export default Login;
+export default Register;
