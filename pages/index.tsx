@@ -8,8 +8,8 @@ const { Content } = Layout;
 const Home: NextPage = () => {
   return (
     <Layout>
-      <Navbar />
-      <Content className={styles.content}>Content</Content>
+      <Navbar.Mobile />
+      <Content className={styles.content}>Index page</Content>
     </Layout>
   );
 };

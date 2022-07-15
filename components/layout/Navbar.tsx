@@ -17,38 +17,52 @@ import {
   Typography,
 } from 'antd';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styles from './Navbar.module.less';
 
 const { Header } = Layout;
 
 const { Text } = Typography;
 
-const menu = (
-  <Menu
-    items={[
-      {
-        label: <Link href='#'>Profile</Link>,
-        icon: <UserOutlined />,
-        key: 'profile',
-      },
-      {
-        label: <Link href='#'>Settings</Link>,
-        icon: <SettingOutlined />,
-        key: 'settings',
-      },
-      {
-        type: 'divider',
-      },
-      {
-        label: 'Sign out',
-        icon: <LogoutOutlined />,
-        key: 'signOut',
-      },
-    ]}
-  />
-);
+const Empty = () => {
+  return (
+    <Header className={styles.header}>
+      <Text>Socialize</Text>
+    </Header>
+  );
+};
 
-const Navbar = () => {
+const Mobile = () => {
+  const router = useRouter();
+
+  const handleSignOut = () => router.push('/sign-in');
+
+  const menu = (
+    <Menu
+      items={[
+        {
+          label: <Link href='#'>Profile</Link>,
+          icon: <UserOutlined />,
+          key: 'profile',
+        },
+        {
+          label: <Link href='#'>Settings</Link>,
+          icon: <SettingOutlined />,
+          key: 'settings',
+        },
+        {
+          type: 'divider',
+        },
+        {
+          label: 'Sign out',
+          icon: <LogoutOutlined />,
+          key: 'signOut',
+          onClick: handleSignOut,
+        },
+      ]}
+    />
+  );
+
   return (
     <Header className={styles.header}>
       <Row justify='space-between' align='middle'>
@@ -81,4 +95,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default { Empty, Mobile };
