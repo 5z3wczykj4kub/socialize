@@ -1,8 +1,10 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import 'antd/dist/antd.css';
+import type { AppProps } from 'next/app';
+import '../styles/antd.less';
+import '../styles/globals.less';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const MyApp = ({ Component, pageProps }: AppProps) => (
+  <Component {...pageProps} />
+);
 
-export default MyApp
+export default MyApp;
