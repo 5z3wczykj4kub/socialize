@@ -13,11 +13,14 @@ import {
   Dropdown,
   Layout,
   Menu,
+  message,
   Row,
   Typography,
 } from 'antd';
+import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import showErrorMessages from '../../lib/functions/showErrorMessages';
 import styles from './Navbar.module.less';
 
 const { Header } = Layout;
@@ -35,7 +38,20 @@ const Empty = () => {
 const Mobile = () => {
   const router = useRouter();
 
-  const handleSignOut = () => router.push('/sign-in');
+  const handleLogout = async () => {
+    try {
+      const hide = message.loading({
+        content: 'Logging out, please wait...',
+        key: 'logoutMessage',
+        duration: 0,
+      });
+      await axios.get('/api/logout');
+      await router.push('/login');
+      hide();
+    } catch (error) {
+      showErrorMessages(error, 'logoutMessage');
+    }
+  };
 
   const menu = (
     <Menu
@@ -54,10 +70,10 @@ const Mobile = () => {
           type: 'divider',
         },
         {
-          label: 'Sign out',
+          label: 'Logout',
           icon: <LogoutOutlined />,
-          key: 'signOut',
-          onClick: handleSignOut,
+          key: 'logout',
+          onClick: handleLogout,
         },
       ]}
     />
